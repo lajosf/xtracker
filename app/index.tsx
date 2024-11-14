@@ -1,13 +1,38 @@
-import { Text, View, StyleSheet } from "react-native";
-import { Link } from "expo-router";
+import { Text, View, StyleSheet, SectionList } from "react-native";
 
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home screen</Text>
-      <Link href="/activities" style={styles.button}>
-        Go to Activities screen
-      </Link>
+      <SectionList
+        style={{ alignSelf: 'flex-start', width: '100%' }}
+        sections={[{ title: "Folders", data: ["Apple", "Banana", "Cherry"] }]}
+        renderItem={({ item }) => (
+          <Text style={[styles.text, {
+            fontSize: 17,
+            paddingVertical: 12,
+            paddingHorizontal: 16,
+            borderBottomWidth: 0.5,
+            borderBottomColor: '#404040',
+            alignSelf: 'flex-start',
+            width: '100%'
+          }]}>
+            {item}
+          </Text>
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={[styles.text, {
+            fontSize: 24,
+            fontWeight: '600',
+            paddingVertical: 16,
+            paddingHorizontal: 16,
+            backgroundColor: '#25292e',
+            alignSelf: 'flex-start',
+            width: '100%'
+          }]}>
+            {title}
+          </Text>
+        )}
+      />
     </View>
   );
 }
